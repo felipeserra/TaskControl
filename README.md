@@ -1,2 +1,2 @@
 # TaskControl
-Controle de Tarefas para Desenvolvimento.
+Controle de Tarefas para desenvolvimento de softwares.
