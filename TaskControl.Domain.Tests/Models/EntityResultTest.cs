@@ -8,7 +8,7 @@ namespace TaskControl.Domain.Tests.Models
     public class EntityResultTest
     {
         [Fact]
-        public void Create_Successfull()
+        public void ValidateAndReturn_Successfull()
         {
             // Arrange
             var testClass = new TestClass
@@ -28,7 +28,7 @@ namespace TaskControl.Domain.Tests.Models
         }
 
         [Fact]
-        public void Create_Fail()
+        public void ValidateAndReturn_Fail()
         {
             // Arrange
             var testClass = new TestClass
