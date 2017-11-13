@@ -1,9 +1,9 @@
 ﻿using Flunt.Validations;
 using System.Linq;
-using TaskControl.Domain.Core;
+using Task.Domain.Core;
 using Xunit;
 
-namespace TaskControl.Domain.Tests.Models
+namespace Task.Domain.Tests.Models
 {
     public class EntityResultTest
     {
@@ -50,17 +50,7 @@ namespace TaskControl.Domain.Tests.Models
         {
             public string PropertyOne { get; set; }
             public string PropertyTwo { get; set; }
-
-            protected override bool EqualsCore(TestClass other)
-            {
-                return true;
-            }
-
-            protected override int GetHashCodeCore()
-            {
-                return 0;
-            }
-
+            
             public void Validate()
             {
                 AddNotifications(new Contract()

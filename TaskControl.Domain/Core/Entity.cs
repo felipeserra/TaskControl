@@ -1,9 +1,9 @@
 ﻿using Flunt.Notifications;
 using System;
 
-namespace TaskControl.Domain.Core
+namespace Task.Domain.Core
 {
-    public abstract class Entity<T> : Notifiable where T : Entity<T>
+    public class Entity<T> : Notifiable where T : Entity<T>
     {
         public Guid Id { get; protected set; }
 
@@ -14,10 +14,8 @@ namespace TaskControl.Domain.Core
             if (ReferenceEquals(this, compareTo))
                 return true;
 
-            return !ReferenceEquals(null, compareTo) && compareTo.Id.Equals(Id) && EqualsCore(compareTo);
-        }
-
-        protected abstract bool EqualsCore(T other);
+            return !ReferenceEquals(null, compareTo) && compareTo.Id.Equals(Id) && Id == compareTo.Id;
+        }        
 
         public static bool operator ==(Entity<T> a, Entity<T> b)
         {
@@ -39,10 +37,8 @@ namespace TaskControl.Domain.Core
         {
             unchecked
             {
-                return (Id.GetHashCode() * 397) ^ GetHashCodeCore();
+                return (Id.GetHashCode() * 397);
             }
-        }
-
-        protected abstract int GetHashCodeCore();
+        }        
     }
 }

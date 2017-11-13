@@ -2,7 +2,7 @@
 using Flunt.Validations;
 using System.Collections.Generic;
 
-namespace TaskControl.Domain.Core
+namespace Task.Domain.Core
 {
     public sealed class EntityResult<T> where T : Entity<T>, IValidatable
     {
@@ -18,6 +18,16 @@ namespace TaskControl.Domain.Core
                 Valid = entity.Valid,
                 Errors = entity.Notifications,
                 Entity = entity.Valid ? entity : null
+            };
+        }
+
+        public static EntityResult<T> CreateNotification(Notification notification)
+        {
+            return new EntityResult<T>
+            {
+                Valid = false,
+                Errors = new[] { notification },
+                Entity = null
             };
         }
     }

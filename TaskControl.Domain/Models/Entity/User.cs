@@ -1,8 +1,8 @@
 ﻿using Flunt.Validations;
 using System;
-using TaskControl.Domain.Core;
+using Task.Domain.Core;
 
-namespace TaskControl.Domain.Models.Entity
+namespace Task.Domain.Models.Entity
 {
     public class User : Entity<User>, IValidatable
     {
@@ -29,28 +29,7 @@ namespace TaskControl.Domain.Models.Entity
                 .IsNotNullOrEmpty(Password, nameof(Password), "Obrigatório informar o campo Senha")
                 );
         }
-
-        protected override bool EqualsCore(User other)
-        {
-            return other != null &&
-                other.Id == Id &&
-                other.Name == Name &&
-                other.Email == Email &&
-                other.Password == Password;
-        }
-
-        protected override int GetHashCodeCore()
-        {
-            unchecked
-            {
-                var hashCode = Id == null ? 0 : Id.GetHashCode();
-                hashCode = (hashCode * 397) ^ Name?.GetHashCode() ?? 0;
-                hashCode = (hashCode * 397) ^ Email?.GetHashCode() ?? 0;
-                hashCode = (hashCode * 397) ^ Password?.GetHashCode() ?? 0;
-                return hashCode;
-            }
-        }
-
+        
         public static EntityResult<User> TryCreateToInsert(string name, string email, string password)
             => TryCreateToUpdate(Guid.NewGuid(), name, email, password);
 
